@@ -1,20 +1,16 @@
 #include "binary_trees.h"
 #include <stdlib.h>
 
-typedef struct binary_tree_s {
-    int value;
-    struct binary_tree_s *left;
-    struct binary_tree_s *right;
-} binary_tree_t;
-
-int binary_tree_is_leaf(const binary_tree_t *node) {
-    // Check if the node is NULL
-    if (node == NULL) {
+/**
+ * binary_tree_is_leaf - Checks if a node is a leaf
+ * @node: Pointer to the node to check
+ *
+ * Return: 1 if node is a leaf, 0 otherwise
+ */
+int binary_tree_is_leaf(const binary_tree_t *node)
+{
+    if (node == NULL)
         return 0;
-    }
-    // Check if both left and right children are NULL
-    if (node->left == NULL && node->right == NULL) {
-        return 1; // It's a leaf node
-    }
-    return 0; // It's not a leaf node
+
+    return (node->left == NULL && node->right == NULL);
 }	
