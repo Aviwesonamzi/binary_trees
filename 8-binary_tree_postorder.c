@@ -1,27 +1,23 @@
 #include "binary_trees.h"
-#include <stddef.h>
 
-// Define the binary tree node structure
-typedef struct binary_tree_s {
-    int value;
-    struct binary_tree_s *left;
-    struct binary_tree_s *right;
-} binary_tree_t;
-
-// Function prototype as provided
-void binary_tree_postorder(const binary_tree_t *tree, void (*func)(int));
-
-// Recursive function to traverse the binary tree in post-order
-void binary_tree_postorder(const binary_tree_t *tree, void (*func)(int)) {
-    if (tree == NULL || func == NULL) {
-        // If the tree or func is NULL, do nothing
+/**
+ * binary_tree_postorder - Goes through a binary tree using post-order traversal
+ * @tree: Pointer to the root node of the tree to traverse
+ * @func: Pointer to a function to call for each node
+ *
+ * Description: If tree or func is NULL, do nothing
+ */
+void binary_tree_postorder(const binary_tree_t *tree, void (*func)(int))
+{
+    if (tree == NULL || func == NULL)
         return;
-    }
 
     // Traverse the left subtree
     binary_tree_postorder(tree->left, func);
+
     // Traverse the right subtree
     binary_tree_postorder(tree->right, func);
-    // Call the function on the current node's value
-    func(tree->value);
+
+    // Call the function for the current node
+    func(tree->n);
 }
