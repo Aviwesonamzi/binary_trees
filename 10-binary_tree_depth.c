@@ -1,24 +1,24 @@
 #include "binary_trees.h"
 
 /**
- * binary_tree_height - Measures the height of a binary tree
- * @tree: Pointer to the root node of the tree to measure the height of
+ * binary_tree_depth - measures the depth of a node in a binary tree
  *
- * Return: Height of the binary tree, or 0 if tree is NULL
+ * @tree: pointer to the node to measure the depth
+ *
+ * Return: depth of the node
  */
-size_t binary_tree_height(const binary_tree_t *tree)
+size_t binary_tree_depth(const binary_tree_t *tree)
 {
-    size_t left_height, right_height;
+    size_t depth = 0;
 
     if (tree == NULL)
         return (0);
 
-    // Recursively calculate the height of the left subtree
-    left_height = binary_tree_height(tree->left);
+    while (tree->parent != NULL)
+    {
+        depth++;
+        tree = tree->parent;
+    }
 
-    // Recursively calculate the height of the right subtree
-    right_height = binary_tree_height(tree->right);
-
-    // Return the maximum height of the left and right subtrees, plus 1 for the current node
-    return (1 + (left_height > right_height ? left_height : right_height));
+    return (depth);
 }
